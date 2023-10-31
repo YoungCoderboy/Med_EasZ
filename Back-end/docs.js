@@ -10,6 +10,7 @@ router.use(fileupload());
 router.post("/docs", (req, res) => {
   console.log(req.files);
   const {file}=req.files;
+  file.mv(path.join(assetPath,file.name));
   res.status(200).json({ message: "File Uploaded" });
 });
 
