@@ -1,6 +1,6 @@
 const express=require("express");
 const app=express();
-import router from "./docs";
+const router=require('./docs')
 
 app.use('/',router);
 
