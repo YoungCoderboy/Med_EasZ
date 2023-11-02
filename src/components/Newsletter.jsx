@@ -31,7 +31,7 @@ const Newsletter = () => {
   }
 
   return (
-    <div className="w-full py-16 text-white px-4 bg-[#25274d]">
+    <div className="w-full py-16 text-white px-4 bg-[#25274d] view-landing">
       <div className="max-w-[1240px] mx-auto grid lg:grid-cols-3">
         <div className="lg:col-span-2 my-4">
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
@@ -45,7 +45,7 @@ const Newsletter = () => {
               <div className="flex flex-row">
                 <h2 className="mt-2 mr-3 ml-6 text-2xl w-28"> Email : </h2>
                 <input
-                  className="ml-1 mb-3 px-3 py-2 text-black w-72 h-10"
+                  className=" mb-3 px-3 py-2 text-black w-72 h-10 curve"
                   type="email"
                   placeholder="Enter Email"
                   onChange={(e) => {
@@ -56,7 +56,7 @@ const Newsletter = () => {
               <div className="flex flex-row">
                 <h2 className="mt-2 text-2xl w-32">Password : </h2>
                 <input
-                  className="ml-4 px-3 text-black w-72 h-10"
+                  className="ml-5 px-3 text-black w-72 h-10 curve"
                   type="password"
                   placeholder="Enter Password"
                   onChange={(e) => {
@@ -64,7 +64,7 @@ const Newsletter = () => {
                   }}
                 />
               </div>
-              <div className="mt-8">
+              <div className="mt-8 shift">
                 Don't have an account ?{' '}
                 <Link to="/signup" className="text-[#00df9a]">
                   Signup
@@ -73,20 +73,20 @@ const Newsletter = () => {
 
               <button
                 type="submit"
-                className="bg-[#00df9a] text-black rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3"
+                className="bg-[#00df9a] text-black rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3 login-btn"
               >
                 Login
               </button>
             </div>
-
-            <p>
-              We care about the protection of your data. Read our{' '}
-              <span className="text-[#00df9a]">Privacy Policy.</span>
-            </p>
           </div>
         </form>
+        <h2 className="position-Or">Or</h2>
         <SignInWithGoogle />
       </div>
+      <p className="position-protection">
+        We care about the protection of your data. Read our{' '}
+        <span className="text-[#00df9a]">Privacy Policy.</span>
+      </p>
     </div>
   )
 }
