@@ -1,19 +1,21 @@
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+
 import Footer from './components/Footer'
 import Newsletter from './components/Newsletter'
+import AuthDetails from './components/AuthDetails'
 // import Analytics from './components/Analytics'
 
 function LandingPage() {
-    return (
-        <div className="App">
-        <Navbar/>
-        <Hero/>
-        <Newsletter/>
-        
-        <Footer/>
-        </div>
-      );
+  return (
+    <div className="App">
+      <Navbar />
+
+      <Newsletter />
+      <AuthDetails />
+
+      <Footer />
+    </div>
+  )
 }
 
-export default LandingPage;
+export default LandingPage
