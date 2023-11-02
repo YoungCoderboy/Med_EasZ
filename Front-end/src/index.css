@@ -400,9 +400,11 @@ Sidebar
   text-transform: capitalize;
 }
 #searchbar{ 
-  margin-left: 15%; 
+  position: relative;
+  margin: 10px auto ; 
   padding:15px; 
   border-radius: 10px; 
+  box-shadow:  10px 5px 5px var(--clr-grey-6);
 } 
 
 input[type=text] { 
@@ -419,9 +421,62 @@ input[type=text]:focus {
 
 #list{ 
  font-size:  1.5em; 
- margin-left: 90px; 
+ margin: 50px auto; 
 } 
 
 .animals{ 
-display: list-item;     
+  display: list-item;     
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 10px auto;
+  width: 80%;
+  font-size: 1.5rem;
+  position: relative;
+  min-height: 3rem;
+  box-shadow:  10px 5px 5px var(--clr-grey-8);
 }  
+
+
+.animals input{
+  position: absolute;
+  left: 10%;
+  top: 35%;
+  font-size: 3rem;
+}
+
+.animals label{
+  position: absolute;
+  right: 10%;
+  font-size: 1.5rem;
+}
+.selectedItems{
+ 
+  min-width: 70vw;
+  margin-top: 2rem;
+}
+.items{
+  display: inline;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 7px;
+  border-radius: 10px;
+  box-shadow:  10px 5px 5px var(--clr-grey-3);
+}
+#list form{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+@media screen and (max-width:800px) {
+  #list form{
+    grid-template-columns: auto auto;
+  }
+}
+.submit-btn{
+  
+  margin: 2% auto;
+}
+
+.submit-btn input{
+
+  background-color: var(--clr-primary-5);
+}

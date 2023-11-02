@@ -1,5 +1,7 @@
 import search_animal from "./search";
+import axios from "axios";
 import { createRef, useRef, useState } from "react";
+import sympthons from "./sympthons";
 
 const Prediction = () => {
   // const [checked, setChecked] = useState(false);
@@ -16,7 +18,22 @@ const Prediction = () => {
       setValues(newx);
     }
   };
-  console.log(values);
+  // console.log(values);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const resp = await axios.post("http://localhost:8000/prediction-data", {
+        body: values,
+      });
+      if (resp.ok) {
+        alert("Action done!!!!!!😍😍😍");
+      } else {
+        console.error("Something went wrong!!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="docupload">
@@ -27,39 +44,40 @@ const Prediction = () => {
         name="search"
         placeholder="Search animals.."
       />
-
+      <div className="selectedItems">
+        {values.map((element, id) => {
+          return (
+            <div className="items" key={id}>
+              {element}
+            </div>
+          );
+        })}
+      </div>
+      <div className="submit-btn">
+        <input
+          type="button"
+          className="btn"
+          name="submit"
+          value="submit"
+          onClick={handleSubmit}
+        />
+      </div>
       <ul id="list">
-        <form>
-          <div className="animals">
-            <input
-              type="checkbox"
-              id="vehicle1"
-              name="vehicle1"
-              value=" I have a bike"
-              onChange={handleChange}
-            />
-            <label for="vehicle1"> I have a bike</label>
-          </div>
-          <div className="animals">
-            <input
-              type="checkbox"
-              id="vehicle2"
-              name="vehicle2"
-              value="I have a dog"
-              onChange={handleChange}
-            />
-            <label for="vehicle2"> I have a dog</label>
-          </div>
-          <div className="animals">
-            <input
-              type="checkbox"
-              id="vehicle3"
-              name="vehicle3"
-              value="I have a car"
-              onChange={handleChange}
-            />
-            <label for="vehicle3"> I have a car</label>
-          </div>
+        <form onSubmit={handleSubmit}>
+          {sympthons.map((element, id) => {
+            return (
+              <div className="animals" key={id}>
+                <input
+                  type="checkbox"
+                  id={id}
+                  name={element}
+                  value={element}
+                  onChange={handleChange}
+                />
+                <label for={id}>{element}</label>
+              </div>
+            );
+          })}
         </form>
       </ul>
     </div>
