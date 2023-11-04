@@ -464,11 +464,11 @@ input[type='text']:focus {
 }
 #list form {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto;
 }
 @media screen and (max-width: 800px) {
   #list form {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 }
 .submit-btn {
