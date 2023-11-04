@@ -1,40 +1,11 @@
-const dotenv= require('dotenv');
-dotenv.config({path: './config.env'})
-const express=require("express");
-const app=express();
-const router=require('./docs')
-const bodyparser = require('body-parser')
-// const cors=require('cors')
-
-// const express = require("express")
+const express = require("express")
 const collection = require("./mongo")
 const cors = require("cors")
-// const app = express()
+const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
-// require("dotenv").config()
-
-
-const mongoose = require('mongoose');
-const DB= process.env.DATABASE.replace('<%PASSWORD%>', process.env.DB_PASSWORD);
-
-mongoose.connect(DB).then(()=>{
-  // console.log(con.connection)
-  console.log("connected to database")
-})
-
-app.use(bodyparser.json())
-app.use(express.urlencoded({extended:true}));
-app.use(cors())
-app.use('/',cors(),router);
-
-// const port=process.env.PORT || 8000;
-// app.listen(port,()=>{
-//     console.log("Server running on port");
-// })
-
-
+require("dotenv").config()
 
 
 app.get("/",cors(),(req,res)=>{
@@ -47,8 +18,9 @@ app.post("/",async(req,res)=>{
 
     try{
         const check=await collection.findOne({email:email})
+        const check2=await collection.findOne({password:password})
 
-        if(check){
+        if(check && check2){
             res.json("exist")
         }
         else{
@@ -67,11 +39,14 @@ app.post("/",async(req,res)=>{
 app.post("/signup",async(req,res)=>{
     
     const{email,password,name}=req.body
-    
+    const inter=[]
+    const al=[]
     const data={
         name:name,
         email:email,
         password:password,
+        interests:inter,
+        already:al
     }
 
     try{
@@ -92,8 +67,29 @@ app.post("/signup",async(req,res)=>{
 
 })
 
-
+app.post("/interests",async (req,res) => {
+    
+    const inter=req.body.selectedCheckboxes
+    const email=req.body.email
+    const le=Object.keys(inter).length
+    const arr=[]
+    for(let i = 0; i < le; i++)
+    {
+        arr.push(inter[i])
+    }
+    try{
+        // const check=await collection.findOne({mail:mail})
+        await collection.updateOne({email:email},{interests:[]})
+        await collection.updateOne({email:email},{ $push: { interests: { $each: arr } } })
+        
+    }
+    catch(e){
+        console.log(e)
+    }
+    console.log("done")
+})
 
 app.listen(8000,()=>{
     console.log("port connected");
 })
+

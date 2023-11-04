@@ -24,11 +24,12 @@ const Prediction = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const resp = await axios.post('http://localhost:8000/prediction-data', {
+      const resp = await axios.post('http://localhost:8000/prediction-data/654687f6d27109e4f54ac15d', {
         body: values,
       })
       if (resp.status === 200) {
         alert('Action done!!!!!!😍😍😍')
+        console.log(pred)
         setPred(true)
       } else {
         console.error('Something went wrong!!')
