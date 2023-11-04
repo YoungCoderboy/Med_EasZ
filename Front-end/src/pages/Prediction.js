@@ -1,43 +1,45 @@
-import search_animal from './search'
-import axios from 'axios'
-import { createRef, useRef, useState } from 'react'
-import sympthons from './sympthons'
-import FinalPredict from './FinalPredict'
+import search_animal from "./search";
+import axios from "axios";
+import { createRef, useRef, useState } from "react";
+import sympthons from "./sympthons";
+import FinalPredict from "./FinalPredict";
 
 const Prediction = () => {
   // const [checked, setChecked] = useState(false);
-  const [values, setValues] = useState([])
-  const [pred, setPred] = useState(false)
+  const [values, setValues] = useState([]);
+  const [pred, setPred] = useState(false);
   const handleChange = (e) => {
     if (e.target.checked) {
-      const x = []
-      x.push(e.target.value)
-      setValues(values.concat(x))
+      const x = [];
+      x.push(e.target.value);
+      setValues(values.concat(x));
     } else {
       const newx = values.filter((it) => {
-        return it !== e.target.value
-      })
-      setValues(newx)
+        return it !== e.target.value;
+      });
+      setValues(newx);
     }
-  }
+  };
   // console.log(values);
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const resp = await axios.post('http://localhost:8000/prediction-data/654687f6d27109e4f54ac15d', {
-        body: values,
-      })
-      if (resp.status === 200) {
-        alert('Action done!!!!!!😍😍😍')
-        console.log(pred)
-        setPred(true)
+      console.log(values);
+      const resp = await axios.post("http://localhost:8005/prediction-data", {
+        arr: values,
+      });
+      if (resp.data == "200") {
+        setTimeout(() => {
+          alert("Action Done!!!")
+          setPred(true);
+        }, 45000);
       } else {
-        console.error('Something went wrong!!')
+        console.error("Something went wrong!!");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div>
@@ -58,7 +60,7 @@ const Prediction = () => {
                 <div className="items" key={id}>
                   {element}
                 </div>
-              )
+              );
             })}
           </div>
           <div className="submit-btn">
@@ -84,13 +86,13 @@ const Prediction = () => {
                     />
                     <label for={id}>{element}</label>
                   </div>
-                )
+                );
               })}
             </form>
           </ul>
         </div>
       )}
     </div>
-  )
-}
-export default Prediction
+  );
+};
+export default Prediction;

@@ -11,11 +11,6 @@ const SharedLayout = () => {
       <button className="sidebar-toggle" onMouseEnter={openSidebar}>
         <FaBars />
       </button>
-      <Link to="/">
-        <button type="submit" onClick={userSignOut}>
-          Logout
-        </button>
-      </Link>
       <section className="section">
         <Outlet />
       </section>
