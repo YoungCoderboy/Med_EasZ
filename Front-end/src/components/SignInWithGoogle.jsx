@@ -1,5 +1,6 @@
 import { auth, provider } from '../firebase'
 import { signInWithPopup } from 'firebase/auth'
+import axios from 'axios'
 const SignInWithGoogle = () => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -11,6 +12,23 @@ const SignInWithGoogle = () => {
         localStorage.setItem('name', name)
         localStorage.setItem('email', email)
         localStorage.setItem('profilePic', profilePic)
+        
+        const newObj={
+          name:name,
+          email:email
+        }
+        const send = async () => {
+          const resp = await axios.post(
+            "http://localhost:8000/addUser",
+            {
+              body: newObj,
+            }
+          
+          );
+          resp();
+          
+        };
+        send();
       })
       .catch((error) => {
         console.log(error)

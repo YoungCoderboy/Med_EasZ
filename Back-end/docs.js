@@ -7,6 +7,23 @@ const User = require('./model/userModel');
 // const {addsimp} =  require('./controller/userController')
 const assetPath = path.join(__dirname, "assets");
 router.use(express.json());
+
+router.post("/addUser",async(req,res,next)=>{
+  const {body}=req.body;
+  console.log(body);
+
+  const newUser = await User.create(body,{
+    runvalidators:false
+  });
+  res.status(201).json({
+    status: 'success',
+    data: {
+      tour: newUser,
+    },
+  });
+})
+
+
 router.post("/prediction-data/:id", async (req, res) => {
   const { body } = req.body;
   const object ={
