@@ -393,39 +393,38 @@ Sidebar
   max-width: 50vw;
 }
 
-
 .feed p {
   box-sizing: border-box;
   width: 50vw;
   text-transform: capitalize;
 }
-#searchbar{ 
+#searchbar {
   position: relative;
-  margin: 10px auto ; 
-  padding:15px; 
-  border-radius: 10px; 
-  box-shadow:  10px 5px 5px var(--clr-grey-6);
-} 
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px var(--clr-grey-6);
+}
 
-input[type=text] { 
-   width: 30%; 
-   -webkit-transition: width 0.15s ease-in-out; 
-   transition: width 0.15s ease-in-out; 
-} 
+input[type='text'] {
+  width: 30%;
+  -webkit-transition: width 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out;
+}
 
 /* When the input field gets focus, 
      change its width to 100% */
-input[type=text]:focus { 
-  width: 70%; 
-} 
+input[type='text']:focus {
+  width: 70%;
+}
 
-#list{ 
- font-size:  1.5em; 
- margin: 50px auto; 
-} 
+#list {
+  font-size: 1.5em;
+  margin: 50px auto;
+}
 
-.animals{ 
-  display: list-item;     
+.animals {
+  display: list-item;
   border: 1px solid black;
   border-radius: 3px;
   margin: 10px auto;
@@ -433,51 +432,47 @@ input[type=text]:focus {
   font-size: 1.5rem;
   position: relative;
   min-height: 3rem;
-  box-shadow:  10px 5px 5px var(--clr-grey-8);
-}  
+  box-shadow: 10px 5px 5px var(--clr-grey-8);
+}
 
-
-.animals input{
+.animals input {
   position: absolute;
   left: 10%;
   top: 35%;
   font-size: 3rem;
 }
 
-.animals label{
+.animals label {
   position: absolute;
   right: 10%;
   font-size: 1.5rem;
 }
-.selectedItems{
- 
+.selectedItems {
   min-width: 70vw;
   margin-top: 2rem;
 }
-.items{
+.items {
   display: inline;
   border: 1px solid black;
   margin: 10px;
   padding: 7px;
   border-radius: 10px;
-  box-shadow:  10px 5px 5px var(--clr-grey-3);
+  box-shadow: 10px 5px 5px var(--clr-grey-3);
 }
-#list form{
+#list form {
   display: grid;
   grid-template-columns: auto auto auto auto;
 }
-@media screen and (max-width:800px) {
-  #list form{
+@media screen and (max-width: 800px) {
+  #list form {
     grid-template-columns: auto auto;
   }
 }
-.submit-btn{
-  
+.submit-btn {
   margin: 2% auto;
 }
 
-.submit-btn input{
-
+.submit-btn input {
   background-color: var(--clr-primary-5);
 }
 
@@ -512,4 +507,14 @@ input[type=text]:focus {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
   margin: 10px;
+}
+.pred {
+  background-color: chartreuse;
+  text-align: center;
+  width: 40%;
+  transform: translateX(70%);
+  margin-top: 20px;
+
+  padding-top: 20px;
+  border-radius: 0.5rem;
 }
