@@ -13,11 +13,12 @@ const Reminder = () => {
   const [value, setValue] = useState([]);
   const [time, setTime] = useState("12:00");
   const [date, setDate] = useState([]);
+  const [medName,setMedName]=useState("")
   function fun(e) {
     const newArray = date.join(" ");
     // console.log(value);
     
-    const x=((time+" "+newArray));
+    const x=((medName+" "+time+" "+newArray));
     const newVal=[...value];
     console.log(newVal)
     const newx = newVal.filter((it) => {
@@ -27,6 +28,12 @@ const Reminder = () => {
     setValue(newx);
     // // setValue(value.concat(time+" "+newArray));
     // console.log(value);
+
+  }
+
+  function medNameChange(){
+    var MedName=document.getElementById("nameMed")
+    setMedName(MedName)
 
   }
 
@@ -56,6 +63,7 @@ const Reminder = () => {
   };
   return (
     <div className="reminder-main">
+      <input type="text" id="nameMed" value={medName} onChange={(e)=>{setMedName(e.target.value)}} />
       <input
         type="time"
         id="time-input"
