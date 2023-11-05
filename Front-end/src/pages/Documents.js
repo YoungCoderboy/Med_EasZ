@@ -76,7 +76,7 @@ function Documents() {
   };
 
   return (
-    <div className=" bg-[url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fimages%2Fcreative-education-background%2F299848927&psig=AOvVaw3wOoXDWKshqeDpH3tOBUdt&ust=1699296234670000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKD896nFrYIDFQAAAAAdAAAAABAE')]">
+    <div className="">
       <h1>Image Uploader</h1>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload Image</button>
