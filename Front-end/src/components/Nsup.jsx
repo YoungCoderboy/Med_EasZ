@@ -12,6 +12,7 @@ const Nsup = () => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [name,setName]=useState('')
+    const [number,setNumber]=useState('')
 
 
     const isValidEmail = (email) => {
@@ -36,7 +37,7 @@ const Nsup = () => {
         try{
 
             await axios.post("http://localhost:8000/signup",{
-                email,password,name
+                email,password,name,number
             })
             .then(res=>{
                 if(res.data==="exist"){
@@ -99,6 +100,15 @@ const Nsup = () => {
               type='password'
               placeholder='Enter Password'
               onChange={(e) => { setPassword(e.target.value) }}
+            />
+            </div>
+            <div className='flex flex-row'>
+            <h2 className='mt-2 text-2xl w-32'>Phone : </h2>
+            <input
+              className='ml-4 px-3 text-black w-72 h-10'
+              type='tel'
+              placeholder='Enter Whatsapp Number'
+              onChange={(e) => { setNumber(e.target.value) }}
             />
             </div>
             <div className="mt-8">Already have an account <Link to="/" className="text-[#00df9a]">Login</Link></div>

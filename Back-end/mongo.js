@@ -26,6 +26,10 @@ const newSchema=new mongoose.Schema({
         type:[String],
         required:false
     },
+    number:{
+        type:String,
+        require:true
+    }
     
 })
 
