@@ -608,3 +608,102 @@ code {
   height: 70vh;
   width: 101.1%;
 }
+.add-data{
+  width: 6rem;
+  font-size: 20px;
+  margin: 10px;
+  margin-bottom: 50px;
+}
+.time-list{
+  margin: 10px;
+  display: grid;
+  border: 2px solid black;
+  padding: 10px;
+  margin-top: 10px;
+
+}
+.time-ul{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  
+}
+.time-ul2{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  
+}
+
+
+.radio-btn .container {
+  
+  position: relative;
+  padding: 10px 120px;
+  margin: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 100px;
+  
+}
+
+/* Hide the browser's default checkbox */
+.radio-btn .container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radio-btn{
+  margin: 20px 10px 40px 10px;
+}
+/* Create a custom checkbox */
+.radio-btn .checkmark {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-btn .container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.radio-btn .container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.radio-btn .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.radio-btn .container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.radio-btn .container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
