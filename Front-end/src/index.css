@@ -512,11 +512,12 @@ input[type='text']:focus {
   margin: 10px;
 }
 .pred {
-  background-color: chartreuse;
+  background-color: var(--clr-primary-5);
   text-align: center;
   width: 40%;
   transform: translateX(70%);
   margin-top: 20px;
+  color: var(--clr-grey-10);
 
   padding-top: 20px;
   border-radius: 0.5rem;
@@ -574,7 +575,12 @@ code {
 .login-btn {
   position: absolute;
   top: 40%;
-  right: 175px;
+  right: 150px;
+}
+
+.logout-btn {
+  width: 90%;
+  margin-left: 1rem;
 }
 .shift {
   margin-left: 140px;

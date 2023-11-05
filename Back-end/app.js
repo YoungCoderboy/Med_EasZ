@@ -1,95 +1,79 @@
-const express = require("express")
-const collection = require("./mongo")
-const cors = require("cors")
+const express = require('express')
+const collection = require('./mongo')
+const cors = require('cors')
 const app = express()
+const router = require('./docs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
-require("dotenv").config()
+require('dotenv').config()
 
+app.use('/', cors(), router)
 
-app.get("/",cors(),(req,res)=>{
+app.post('/', async (req, res) => {
+  const { email, password } = req.body
 
+  try {
+    const check = await collection.findOne({ email: email })
+    const check2 = await collection.findOne({ password: password })
+
+    if (check && check2) {
+      res.json('exist')
+    } else {
+      res.json('notexist')
+    }
+  } catch (e) {
+    res.json('fail')
+  }
 })
 
+app.post('/signup', async (req, res) => {
+  const { email, password, name } = req.body
+  const inter = []
+  const al = []
+  const data = {
+    name: name,
+    email: email,
+    password: password,
+    interests: inter,
+    already: al,
+  }
 
-app.post("/",async(req,res)=>{
-    const{email,password}=req.body
+  try {
+    const check = await collection.findOne({ email: email })
 
-    try{
-        const check=await collection.findOne({email:email})
-        const check2=await collection.findOne({password:password})
-
-        if(check && check2){
-            res.json("exist")
-        }
-        else{
-            res.json("notexist")
-        }
-
+    if (check) {
+      res.json('exist')
+    } else {
+      res.json('notexist')
+      await collection.insertMany([data])
     }
-    catch(e){
-        res.json("fail")
-    }
-
+  } catch (e) {
+    res.json('fail')
+  }
 })
 
-
-
-app.post("/signup",async(req,res)=>{
-    
-    const{email,password,name}=req.body
-    const inter=[]
-    const al=[]
-    const data={
-        name:name,
-        email:email,
-        password:password,
-        interests:inter,
-        already:al
-    }
-
-    try{
-        const check=await collection.findOne({email:email})
-
-        if(check){
-            res.json("exist")
-        }
-        else{
-            res.json("notexist")
-            await collection.insertMany([data])
-        }
-
-    }
-    catch(e){
-        res.json("fail")
-    }
-
+app.post('/interests', async (req, res) => {
+  const inter = req.body.selectedCheckboxes
+  const email = req.body.email
+  const le = Object.keys(inter).length
+  const arr = []
+  for (let i = 0; i < le; i++) {
+    arr.push(inter[i])
+  }
+  try {
+    // const check=await collection.findOne({mail:mail})
+    await collection.updateOne({ email: email }, { interests: [] })
+    await collection.updateOne(
+      { email: email },
+      { $push: { interests: { $each: arr } } }
+    )
+  } catch (e) {
+    console.log(e)
+  }
+  console.log('done')
 })
 
-app.post("/interests",async (req,res) => {
-    
-    const inter=req.body.selectedCheckboxes
-    const email=req.body.email
-    const le=Object.keys(inter).length
-    const arr=[]
-    for(let i = 0; i < le; i++)
-    {
-        arr.push(inter[i])
-    }
-    try{
-        // const check=await collection.findOne({mail:mail})
-        await collection.updateOne({email:email},{interests:[]})
-        await collection.updateOne({email:email},{ $push: { interests: { $each: arr } } })
-        
-    }
-    catch(e){
-        console.log(e)
-    }
-    console.log("done")
+app.listen(8000, () => {
+  console.log('port connected')
 })
-
-app.listen(8000,()=>{
-    console.log("port connected");
-})
-
